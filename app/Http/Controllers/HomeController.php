@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\Contact;
 use Illuminate\Http\Request;
+use App\Events\CreateUserEvent;
 use App\Library\Services\DemoOne;
 use Illuminate\Support\Facades\Mail;
 
@@ -56,7 +57,9 @@ class HomeController extends Controller
                 'email' => 'ajay krishna reddy',
                 'password' => 'password'
             ];
-        Mail::to('ajaykrish.nalla@gmail.com')->send(new Contact($data));
+        // Mail::to('ajaykrish.nalla@gmail.com')->send(new Contact($data));
+
+        event(new CreateUserEvent($data));
 
     }
 

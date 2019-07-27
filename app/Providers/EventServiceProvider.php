@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Events\CreateUserEvent;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -18,6 +19,11 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        'App\Events\CreateUserEvent'=> [
+            'App\Listeners\Registered',
+            'App\Listeners\MailSent',
+            'App\Listeners\MailConfirmation',
+        ]
     ];
 
     /**
