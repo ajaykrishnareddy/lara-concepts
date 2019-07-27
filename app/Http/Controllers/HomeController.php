@@ -24,7 +24,31 @@ class HomeController extends Controller
      */
     public function create()
     {
-        //
+        //one to one
+        // $user = \App\User::find(1);
+        // $phone  = \App\Phone::find(4);
+        // dd($phone->user->email);
+
+        ///one to many
+        // $post = \App\Post::find(2);
+        // dd($post->comments);
+
+        //one to many
+        // $c = \App\Comment::find(3);
+        // dd($c->post);
+
+        //many to many
+        $user = \App\User::first();
+        
+        $roles = \App\Role::all();
+        // $user->roles()->syncWithoutDetaching([
+        //     1 => [
+        //         'name' => 'Ajay Krishna Reddy'
+        //     ]
+        // ]);
+        // dd($user->roles[0]->pivot->name);
+        $c = \App\Country::find(1);
+        dd($c->cities);
     }
 
     /**
