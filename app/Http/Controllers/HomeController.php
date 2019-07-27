@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Contact;
 use Illuminate\Http\Request;
 use App\Library\Services\DemoOne;
+use Illuminate\Support\Facades\Mail;
+
 class HomeController extends Controller
 {
     /**
@@ -38,17 +41,23 @@ class HomeController extends Controller
         // dd($c->post);
 
         //many to many
-        $user = \App\User::first();
+        // $user = \App\User::first();
         
-        $roles = \App\Role::all();
+        // $roles = \App\Role::all();
         // $user->roles()->syncWithoutDetaching([
         //     1 => [
         //         'name' => 'Ajay Krishna Reddy'
         //     ]
         // ]);
         // dd($user->roles[0]->pivot->name);
-        $c = \App\Country::find(1);
-        dd($c->cities);
+        // $c = \App\Country::find(1);
+        // dd($c->cities);
+            $data = [
+                'email' => 'ajay krishna reddy',
+                'password' => 'password'
+            ];
+        Mail::to('ajaykrish.nalla@gmail.com')->send(new Contact($data));
+
     }
 
     /**
